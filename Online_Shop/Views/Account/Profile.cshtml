@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/assets/images/profile.jpg');">
+    <h2 class="ltext-105 cl0 txt-center" style="color-black;">
+
+        <p style="color:black;">
+            <b> პ რ ო ფ ი ლ ი</b>
+        </p>
+    </h2>
+</section>
+
+<section class="bg0 p-t-52 p-b-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9 p-b-80">
+                <div class="p-r-45 p-r-0-lg">
+
+    @await Html.PartialAsync("_AccountPartial")

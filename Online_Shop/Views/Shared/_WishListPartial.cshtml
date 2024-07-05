@@ -1,0 +1,21 @@
+﻿@model Bags_Wallets.Models.Wishlist
+
+
+
+    <form asp-controller="WishList" asp-action="AddToWishlist" method="post">
+        <input type="hidden" name="productId" value="@Model.Id" />
+        <input type="hidden" name="quantity" value="1" />
+        <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+            დამატება
+            @* <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = ViewBag.ProductId })"></a> *@
+        </button>
+
+        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+
+
+
+            @* <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> *@
+
+            
+        </a>
+    </form>

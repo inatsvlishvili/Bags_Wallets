@@ -1,0 +1,71 @@
+﻿@model Bags_Wallets.ViewModels.SellerViewModel
+
+@{
+    ViewData["Title"] = "DeleteSeller";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>წაშლა</h2>
+            
+        </div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                სახელი/გვარი
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                კომპანია(შპს)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FullName)
+            </dd>
+            <dt class="col-sm-2">
+                მეილი
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                ტელეფონი
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt class="col-sm-2">
+                ქალაქი
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt class="col-sm-2">
+                მისამართი
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt class="col-sm-2">
+                აღწერა
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+
+        <form asp-action="DeleteSeller">
+            <input type="hidden" asp-for="Id" />
+            <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+                წაშლა
+            </button>
+            <div>
+                <a href="javascript:history.back()">უკან დაბრუნება</a>
+            </div>
+        </form>
+    </div>
+    </div>
+</main>

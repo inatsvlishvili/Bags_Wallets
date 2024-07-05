@@ -1,0 +1,259 @@
+﻿@model Bags_Wallets.ViewModels.ProductListViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-slide">
+    <div class="wrap-slick1 rs2-slick1">
+        <div class="slick1">
+            @foreach (var item in ViewBag.CoverPhoto)
+            {
+                <div class="item-slick1 bg-overlay1" style="background-image: url('@Url.Content("~/Images/pageimages/" + item.ImageName)');" data-thumb="/Images/PageImages/@item.ImageName" data-caption="@item.Title">
+                    <div class="container h-full">
+                        <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+                                <span class="ltext-202 txt-center cl0 respon2">
+                                    @item.Title
+                                </span>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
+                                <h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
+                                    @item.Collection
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="wrap-slick1-dots p-lr-10"></div>
+    </div>
+</section>
+
+<section id="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 p-b-30 m-lr-auto">
+                <div class="block1 wrap-pic-w">
+                    <img src="~/Images/PageImages/bg1.jpg" alt="IMG-BANNER">
+                    <a href="/Home/Bags/" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-22 trans-03 respon3">
+                        <div class="block1-txt-child1 flex-col-l">
+                            <span class="block1-name ltext-102 trans-04 p-b-8">
+                                <b>ჩანთები</b>
+                            </span>
+
+                            <span class="block1-info stext-102 trans-04">
+                                <b>ახალი მოდელები</b>
+                            </span>
+                        </div>
+
+                        <div class="block1-txt-child2 p-b-4 trans-05">
+                            <div class="block1-link stext-101 cl0 trans-09">
+                                <b>დათვალიერება</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-b-30 m-lr-auto">
+                <div class="block1 wrap-pic-w">
+                    <img src="~/Images/PageImages/wl1.jpg" alt="IMG-BANNER">
+                    <a href="/Home/Wallets/" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-22 trans-03 respon3">
+                        <div class="block1-txt-child1 flex-col-l">
+                            <span class="block1-name ltext-102 trans-04 p-b-8">
+                                <b>საფულეები</b>
+                            </span>
+                            <span class="block1-info stext-102 trans-04">
+                                <b>ახალი მოდელები</b>
+                            </span>
+                        </div>
+                        <div class="block1-txt-child2 p-b-4 trans-05">
+                            <div class="block1-link stext-101 cl0 trans-09">
+                                <b>დათვალიერება</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<section class="sec-product bg0 p-t-100 p-b-50" id="productNew">
+    <div class="container">
+        <div class="p-b-32">
+            <h3 class="ltext-105 cl5 txt-center respon1">
+                <b>ახალი დამატებულები</b>
+            </h3>
+        </div>
+
+        <div class="tab-content p-t-50">
+            <div class="tab-pane fade show active" id="best-seller" role="tabpanel">
+                <div class="wrap-slick2">
+                    <div class="slick2">
+                        @foreach (var item in ViewBag.NewAdd as IEnumerable<Bags_Wallets.Models.Product>)
+                        {
+                            <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0 label-new" data-label="New">
+                                        <a href="@Url.Action("ProductDetail", "Home", new { id = item.Id })">
+                                            @{
+                                                <img src="@item.Images.FirstOrDefault().ImagePath" width="315" height="390">
+                                            }
+                                            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                სწრაფი ნახვა
+                                            </a>
+                                    </div>
+                                    <div class="block2-txt flex-w flex-t p-t-14">
+                                        <div class="block2-txt-child1 flex-col-l ">
+                                            <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                @item.Title
+                                            </a>
+                                            <span class="stext-105 cl3">
+                                                @item.Price ₾
+                                            </span>
+                                        </div>
+                                        <div class="block2-txt-child2 flex-r p-t-3">
+                                            <form asp-controller="WishList" asp-action="AddToWishlist" method="post">
+                                                <input type="hidden" name="productId" value="@item.Id" />
+                                                <button type="submit">
+                                                    @* <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-tooltip="ფავორიტი"> *@
+                                                    <a href="#" class="dis-block fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="ფავორიტი">
+                                                        <img class="icon-heart1 dis-block trans-04" src="~/assets/shop/images/icons/icon-heart-01.png" alt="ICON">
+                                                        @* <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/assets/shop/images/icons/icon-heart-02.png" alt="ICON">  *@
+                                                    </a>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section class="bg0 p-t-23 p-b-130" id="productSale">
+    <div class="container">
+        <div class="p-b-10">
+            <h3 class="ltext-105 cl5 txt-center respon1">
+                <b>ფასდაკლება</b>
+            </h3>
+        </div>
+
+        <div class="flex-w justify-content-center p-b-52">
+            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                <button class="clearFiltersBtn flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" data-gender="All">
+                    ყველა
+                </button>
+                <button class="filter-btn flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" data-gender="Woman">
+                    ქალი
+                </button>
+                <button class="filter-btn flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" data-gender="Man">
+                    კაცი
+                </button>
+                <button class="filter-btn flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" data-gender="Kid">
+                    ბავშვი
+                </button>
+            </div>
+        </div>
+
+        <div class="row isotope-grid" id="FilterResult">
+            @foreach (var item in ViewBag.Sale as IEnumerable<Bags_Wallets.Models.Product>)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="block2">
+                        <div class="block2-pic hov-img0 label-hot" data-label="Sale">
+                            @{
+                                <img src="@item.Images.FirstOrDefault().ImagePath" width="315" height="390">
+                            }
+                            <a href="@Url.Action("ProductDetail", "Home", new { id = item.Id })" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                ნახვა
+                            </a>
+                        </div>
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    @item.Title
+                                </a>
+                                <span class="stext-105 cl3">
+                                    @item.Price ₾
+                                </span>
+                            </div>
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                <form asp-controller="WishList" asp-action="AddToWishlist" method="post">
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <button type="submit">
+                                        @* <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-tooltip="ფავორიტი"> *@
+                                        <a href="#" class="dis-block fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="ფავორიტი">
+                                            <img class="icon-heart1 dis-block trans-04" src="~/assets/shop/images/icons/icon-heart-01.png" alt="ICON">
+                                            @* <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/assets/shop/images/icons/icon-heart-02.png" alt="ICON">  *@
+                                        </a>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="flex-c-m flex-w w-full p-t-45">
+            <a href="/Home/Bags" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                ყველა ჩანთა
+            </a>
+            <a href="/Home/Wallets" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                ყველა საფულე
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<div class="btn-back-to-top" id="myBtn">
+    <span class="symbol-btn-back-to-top">
+        <i class="zmdi zmdi-chevron-up"></i>
+    </span>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.filter-btn').click(function () {
+                var gender = $(this).data('gender');
+
+                $.ajax({
+                    url: '@Url.Action("ProductFilter", "Home")',
+                    type: 'GET',
+                    data: { gender: gender },
+                    success: function (data) {
+                        $('#FilterResult').html(data);
+                    },
+                    error: function () {
+                        alert('Error filtering products.');
+                    }
+                });
+            });
+
+            $('#clearFiltersBtn').click(function () {
+                $.ajax({
+                    url: '@Url.Action("ClearFilters", "Home")',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#filteredProducts').html(data);
+                    },
+                    error: function () {
+                        alert('Error clearing filters.');
+                    }
+                });
+            });
+
+        });
+    </script>
+}

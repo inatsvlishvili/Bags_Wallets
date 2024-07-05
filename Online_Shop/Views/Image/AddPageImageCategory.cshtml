@@ -1,0 +1,51 @@
+﻿@model Bags_Wallets.ViewModels.PageImageCategoryViewModel
+
+@{
+    ViewData["Title"] = "AddPageImageCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>Form</h2>
+            <div class="mdl-card__subtitle">Please complete the form</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            <form asp-action="AddPageImageCategory" class="form" method="post" enctype="multipart/form-data">
+                <div class="form__article">
+                    <h3>Personal data</h3>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Title" class="mdl-textfield__input" type="text" id="Title" />
+                            <label asp-for="Title" class=" mdl-textfield__label" for="Title">სახელი</label>
+                        </div>
+                    </div>
+
+                  
+                   
+
+                    <div class="form__action">
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="isInfoReliable">
+                            <input type="checkbox" id="isInfoReliable" class="mdl-checkbox__input" required />
+                            <span class="mdl-checkbox__label">Entered information is reliable</span>
+                        </label>
+                        <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                            Submit
+                        </button>
+
+                        @* <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> *@
+
+                    </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+   
+</main>
+
+
+
+

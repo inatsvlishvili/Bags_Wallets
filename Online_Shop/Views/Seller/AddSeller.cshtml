@@ -1,0 +1,80 @@
+﻿@model Bags_Wallets.ViewModels.SellerViewModel
+
+@{
+    ViewData["Title"] = "AddSeller";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>გამყიდველის დამატება</h2>
+           
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            <form asp-action="AddSeller" class="form" enctype="multipart/form-data">
+                <div class="form__article">
+                  
+
+
+
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Title" class="mdl-textfield__input" type="text" id="Title" />
+                            <label asp-for="Title" class=" mdl-textfield__label" for="Title">სახელი/გვარი</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="FullName" class="mdl-textfield__input" type="text" id="FullName" />
+                            <label asp-for="FullName" class=" mdl-textfield__label" for="FullName">კომპანია(შპს)</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="PhoneNumber" class="mdl-textfield__input" type="text" id="PhoneNumber" />
+                            <label asp-for="PhoneNumber" class=" mdl-textfield__label" for="PhoneNumber">ტელეფონი</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Email" class="mdl-textfield__input" type="text" id="Email" />
+                            <label asp-for="Email" class=" mdl-textfield__label" for="Email">მეილი</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="City" class="mdl-textfield__input" type="text" id="City" />
+                            <label asp-for="City" class=" mdl-textfield__label" for="City">ქალაქი</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Address" class="mdl-textfield__input" type="text" id="Address" />
+                            <label asp-for="Address" class=" mdl-textfield__label" for="Address">მისამართი</label>
+                        </div>
+                    </div>
+                    <div class="form__article employer-form__general_skills">
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="Description" type="text" rows="3" id="Description"></textarea>
+                            <label asp-for="Description" class="mdl-textfield__label" for="Description">აღწერა</label>
+                        </div>
+                    </div>
+
+                    <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue">
+                        დამატება
+                    </button>
+
+                    </div>
+            </form>
+        </div>
+        <div>
+            <a href="javascript:history.back()">უკან დაბრუნება</a>
+        </div>
+    </div>
+</main>

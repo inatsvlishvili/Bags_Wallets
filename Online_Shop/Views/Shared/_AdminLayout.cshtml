@@ -1,0 +1,358 @@
+﻿<!doctype html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet'
+          type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/admin/css/lib/getmdl-select.min.css">
+    <link rel="stylesheet" href="~/assets/admin/css/lib/nv.d3.min.css">
+    <link rel="stylesheet" href="~/assets/admin/css/application.min.css" asp-append-version="true">
+
+
+
+
+
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <div class="mdl-layout-spacer"></div>
+
+                <div class="material-icons mdl-badge mdl-badge--overlap mdl-button--icon notification" id="notification"
+                     data-badge="3">
+                    notifications_none
+                </div>
+                <ul class="mdl-menu mdl-list mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right mdl-shadow--2dp notifications-dropdown"
+                    for="notification">
+                    <li class="mdl-list__item">
+                        ბოლო კომენტარები
+                    </li>
+                    <li class="mdl-menu__item mdl-list__item list__item--border-top">
+                        <span class="mdl-list__item-primary-content">
+                            <span class="mdl-list__item-avatar background-color--primary">
+                                <i class="material-icons">mail_outline</i>
+                            </span>
+                            <span>კომენტარი</span>
+                        </span>
+                        <span class="mdl-list__item-secondary-content">
+                            <span class="label">თარიღი</span>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item list__item--border-top">
+                        <button href="/Contact/Comment" class="mdl-button mdl-js-button mdl-js-ripple-effect">ყველა კომენტარი</button>
+                    </li>
+                </ul>
+
+                <div class="material-icons mdl-badge mdl-badge--overlap mdl-button--icon message" id="inbox" data-badge="2">
+                    mail_outline
+                </div>
+                <!-- Messages dropdown-->
+                <ul class="mdl-menu mdl-list mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right mdl-shadow--2dp messages-dropdown"
+                    for="inbox">
+                    <li class="mdl-list__item">
+                        შეტყობინება
+                    </li>
+                    <li class="mdl-menu__item mdl-list__item mdl-list__item--two-line list__item--border-top">
+                        <span class="mdl-list__item-primary-content">
+                            <span class="mdl-list__item-avatar background-color--primary">
+                                <text>თ</text>
+                            </span>
+                            <span>თეა</span>
+                            <span class="mdl-list__item-sub-title">მეილი</span>
+                        </span>
+                        <span class="mdl-list__item-secondary-content">
+                            <span class="label label--transparent">just now</span>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item list__item--border-top">
+                        <button href="/Contact/ContactUs" class="mdl-button mdl-js-button mdl-js-ripple-effect">ყველა შეტყობინება</button>
+                    </li>
+                </ul>
+
+                <div class="avatar-dropdown" id="icon">
+                    <span>ადმინი</span>
+                    <img src="~/assets/admin/images/Icon_header.png">
+                </div>
+                <!-- Account dropdawn-->
+                <ul class="mdl-menu mdl-list mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-shadow--2dp account-dropdown"
+                    for="icon">
+                    <li class="mdl-list__item mdl-list__item--two-line">
+                        <span class="mdl-list__item-primary-content">
+                            <span class="material-icons mdl-list__item-avatar"></span>
+                            <span>Luke</span>
+                            <span class="mdl-list__item-sub-title">Luke@skywalker.com</span>
+                        </span>
+                    </li>
+                    <li class="list__item--border-top"></li>
+                    <li class="mdl-menu__item mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">account_circle</i>
+                            My account
+                        </span>
+                    </li>
+                    <li class="mdl-menu__item mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">check_box</i>
+                            My tasks
+                        </span>
+                        <span class="mdl-list__item-secondary-content">
+                            <span class="label background-color--primary">3 new</span>
+                        </span>
+                    </li>
+                    <li class="mdl-menu__item mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">perm_contact_calendar</i>
+                            My events
+                        </span>
+                    </li>
+                    <li class="list__item--border-top"></li>
+                    <li class="mdl-menu__item mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">settings</i>
+                            Settings
+                        </span>
+                    </li>
+                    <a href="login.html">
+                    <li class="mdl-menu__item mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
+                            Log out
+                        </span>
+                    </li>
+                    </a>
+                </ul>
+
+                <button id="more"
+                        class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">more_vert</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-shadow--2dp settings-dropdown"
+                    for="more">
+                    <li class="mdl-menu__item">
+                        Settings
+                    </li>
+                    <a class="mdl-menu__item" href="https://github.com/CreativeIT/getmdl-dashboard/issues">
+                        Support
+                    </a>
+                    <li class="mdl-menu__item">
+                        F.A.Q.
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="mdl-layout__drawer">
+            <header>ადმინ პანელი</header>
+            <div class="scroll__wrapper" id="scroll__wrapper">
+                <div class="scroller" id="scroller">
+                    <div class="scroll__container" id="scroll__container">
+                        <nav class="mdl-navigation">
+                            <a class="mdl-navigation__link mdl-navigation__link--current" href="/Admin/Index">
+                                <i class="material-icons" role="presentation">dashboard</i>
+                                მთავარი
+                            </a>
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">inventory</i>
+                                    პროდუქტები
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Product/Product">
+                                        ყველა
+                                    </a>
+                                    @*  <a class="mdl-navigation__link" href="/Product/Bags">
+                                    ჩანთები
+                                    </a>
+                                    <a class="mdl-navigation__link" href="/Product/Wallets">
+                                    საფულეები
+                                    </a> *@
+                                    <a class="mdl-navigation__link" href="/Product/AddProduct">
+                                        დამატება
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">sell</i>
+                                    გამყიდველი
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Seller/Seller">
+                                        ყველა
+                                    </a>
+                                    <a class="mdl-navigation__link" href="/Seller/AddSeller">
+                                        დამატება
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">email</i>
+                                    შეტყობინება
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Contact/ContactUs">
+                                        ყველა
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">comment</i>
+                                    კომენტარები
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Contact/Comment">
+                                        ყველა
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">image</i>
+                                    გვერდის სურათები
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Image/PageImage">
+                                        ყველა
+                                    </a>
+                                    <a class="mdl-navigation__link" href="/Image/AddPageImage">
+                                        დამატება
+                                    </a>
+                                    @*  <a class="mdl-navigation__link" href="/Item/Wallets">
+                                    123
+                                    </a>
+                                    <a class="mdl-navigation__link" href="/Item/AddItem">
+                                    123
+                                    </a> *@
+
+                                </div>
+                            </div>
+
+
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">save_as</i>
+                                    ჩვენ შესახებ
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Contact/AboutUs">
+                                        ყველა
+                                    </a>
+                                    <a class="mdl-navigation__link" href="/Contact/AddAboutUs">
+                                        დამატება
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">import_contacts</i>
+                                    საკონტაქტო
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Contact/ContactInfo">
+                                        ყველა
+                                    </a>
+                                    <a class="mdl-navigation__link" href="/Contact/AddContactInfo">
+                                        დამატება
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="sub-navigation">
+                                <a class="mdl-navigation__link">
+                                    <i class="material-icons">people</i>
+                                    იუზერები
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                                <div class="mdl-navigation">
+                                    <a class="mdl-navigation__link" href="/Admin/User">
+                                        ყველა
+                                    </a>
+                                    <a class="mdl-navigation__link" href="/Admin/AddUser">
+                                        დამატება
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="mdl-navigation__link" href="/Admin/Sold">
+                                <i class="material-icons">shopping_cart</i>
+                                გაყიდვები
+                            </a>
+                            <a class="mdl-navigation__link" href="/Admin/CartAdded">
+                                <i class="material-icons">add_box</i>
+                                კარტაზე დამატებულები
+                            </a>
+                            <a class="mdl-navigation__link" href="/Admin/Favorite">
+                                <i class="material-icons">favorite</i>
+                                ფავორიტები
+                            </a>
+
+
+
+                            <div class="mdl-layout-spacer"></div>
+                            <hr>
+                            <a class="mdl-navigation__link" href="/Home/Index">
+                                <i class="material-icons" role="presentation">link</i>
+                                Site
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+                <div class='scroller__bar' id="scroller__bar"></div>
+            </div>
+        </div>
+
+
+
+        @RenderBody()
+
+        <script src="~/assets/admin/js/d3.min.js"></script>
+        <script src="~/assets/admin/js/getmdl-select.min.js"></script>
+        <script src="~/assets/admin/js/material.min.js"></script>
+        <script src="~/assets/admin/js/nv.d3.min.js"></script>
+        <script src="~/assets/admin/js/layout/layout.min.js"></script>
+        <script src="~/assets/admin/js/scroll/scroll.min.js"></script>
+        <script src="~/assets/admin/js/widgets/charts/discreteBarChart.min.js"></script>
+        <script src="~/assets/admin/js/widgets/charts/linePlusBarChart.min.js"></script>
+        <script src="~/assets/admin/js/widgets/charts/stackedBarChart.min.js"></script>
+        <script src="~/assets/admin/js/widgets/employer-form/employer-form.min.js"></script>
+        <script src="~/assets/admin/js/widgets/line-chart/line-charts-nvd3.min.js"></script>
+        <script src="~/assets/admin/js/widgets/map/maps.min.js"></script>
+        <script src="~/assets/admin/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
+        <script src="~/assets/admin/js/widgets/table/table.min.js"></script>
+        <script src="~/assets/admin/js/widgets/todo/todo.min.js"></script>
+
+
+
+        @await RenderSectionAsync("Scripts", required: false)
+
+        @section scripts {
+            <script src="~/js/searchjs.js" asp-append-version="true"></script>
+        }
+</body>
+</html>

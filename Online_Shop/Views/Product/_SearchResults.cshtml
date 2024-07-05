@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Bags_Wallets.ViewModels.ProductViewModel>
+
+
+@if (Model.Any())
+{
+    
+        @foreach (var item in Model)
+        {
+            <tr>
+                @* <td class="mdl-data-table__cell--non-numeric">1</td> *@
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Title)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Collection)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Category.TitleGeo)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Seller.FullName)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Price)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Discount)</td>
+                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.IsOnSale)</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <span style="white-space: pre-line">@item.Description</span>
+                </td>
+                @* <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.CreatedateTime.ToString("MM/dd/yyyy"))</td> *@
+                <td class="mdl-data-table__cell--non-numeric">@Model.FirstOrDefault().CreatedateTime.ToString("MM/dd/yyyy")</td>
+                <td class="mdl-data-table__cell--non-numeric">
+
+                    @* <img src="~/Images/product/@photo.Images" class="profile-image color--smooth-gray " style="width: 100; height: 100px;" asp-append-version="true" /> *@
+                    @if (item.Images != null)
+                    {
+                        @foreach (var image in item.Images)
+                        {
+                            @* <img src="@image.ImagePath" class="profile-image color--smooth-gray" style="width:25%; height:10em; border-radius:1rem;" /> *@
+                            <img src="@image.ImagePath" class="profile-image color--smooth-gray" style="width: 100; height: 80px; border-radius:1rem" asp-append-version="true" />
+                        }
+                    }
+                    else
+                    {
+                        <p>no image</p>
+                    }
+
+                </td>
+
+                <td class="mdl-data-table__cell--non-numeric">
+                    <a asp-action="EditProduct" asp-route-id="@item.Id">
+                        <button class="mdl-button mdl-js-button mdl-button--raised button--colored-orange">
+                            <span class="material-icons">
+                                rotate_right
+                            </span>შესწორება
+                        </button>
+                    </a>
+                    <br />
+                    <a asp-action="DeleteProduct" asp-route-id="@item.Id">
+                        <button class="mdl-button mdl-js-button mdl-button--raised material-icons button--colored-red">
+                            <span class="material-icons">
+                                delete
+
+                            </span>წაშლა
+
+                        </button>
+                    </a>
+                </td>
+
+
+            </tr>
+
+        }
+    
+
+}
+else
+{
+    <tr>
+        <td colspan="2">მონაცემები ვერ მოიძებნა</td>
+    </tr>
+}

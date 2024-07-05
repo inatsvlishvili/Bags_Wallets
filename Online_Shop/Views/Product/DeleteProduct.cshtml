@@ -1,0 +1,95 @@
+﻿@model Bags_Wallets.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "DeleteProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>Form</h2>
+            <div class="mdl-card__subtitle">Please complete the form</div>
+        </div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>   
+        <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Collection)
+        </dt>
+        <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Collection)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsOnSale)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsOnSale)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.ImageName) *@
+        </dt>
+        <dd class = "col-sm-10">
+            @* @Html.DisplayFor(model => model.ImageName) *@
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedateTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.Id)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Seller)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Seller.Id)
+        </dd>
+    </dl>
+
+        <form asp-action="DeleteProduct">
+        <input type="hidden" asp-for="Id" />
+            <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+                წაშლა
+            </button>
+            <div>
+                <a href="javascript:history.back()">უკან დაბრუნება</a>
+            </div>
+    </form>
+</div>
+</div>
+</main>

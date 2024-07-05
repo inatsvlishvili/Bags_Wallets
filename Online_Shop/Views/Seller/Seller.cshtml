@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Bags_Wallets.ViewModels.SellerViewModel>
+
+@{
+    ViewData["Title"] = "Seller";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content ">
+
+    <div class="mdl-grid ui-tables">
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h1 class="mdl-card__title-text">გამყიდველები</h1>
+                </div>
+
+
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+                    <a asp-action="AddSeller" button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">ახლის შექმნა</a>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                        <input type="text" id="searchInput" class="mdl-textfield__input" />
+                        <label class="mdl-textfield__label" for="name">ძ ე ბ ნ ა . . .</label>
+                    </div>
+                </div>
+
+                <div class="mdl-card__supporting-text no-padding">
+                    <table class="mdl-data-table mdl-js-data-table">
+                        <thead>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">#</td>
+                                <td class="mdl-data-table__cell--non-numeric">სახელი/გვარი</td>
+                                <td class="mdl-data-table__cell--non-numeric">კომპანია(შპს)</td>
+                                <td class="mdl-data-table__cell--non-numeric">ტელეფონი</td>
+                                <td class="mdl-data-table__cell--non-numeric">მეილი</td>
+                                <td class="mdl-data-table__cell--non-numeric">ქალაქი</td>
+                                <td class="mdl-data-table__cell--non-numeric">მისამართი</td>
+                                <td class="mdl-data-table__cell--non-numeric">თარიღი</td>
+                                <td class="mdl-data-table__cell--non-numeric">აღწერა</td>
+
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTableBody">
+                            @{
+                                int rowNo = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">@(rowNo += 1)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.FullName)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.City)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Address)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Model.FirstOrDefault().CreatedateTime.ToString("MM/dd/yyyy")</td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <span style="white-space: pre-line">@Html.DisplayFor(modelItem => item.Description)</span>
+                                    </td>
+
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <a asp-action="EditSeller" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised button--colored-orange">
+                                                <span class="material-icons">
+                                                    rotate_right
+                                                </span>შესწორება
+                                            </button>
+                                        </a>
+
+                                        <a asp-action="DeleteSeller" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised material-icons button--colored-red">
+                                                <span class="material-icons">
+                                                    delete
+
+                                                </span>წაშლა
+
+                                            </button>
+                                        </a>
+                                    </td>
+                                    @* <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal" asp-action="Delete" asp-route-id="@item.Id">Delete</button></td> *@
+
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#searchInput').on('input', function () {
+                var query = $(this).val();
+                console.log('query', query)
+                $.ajax({
+                    url: '@Url.Action("SearhSeller", "Seller")',
+                    type: 'GET',
+                    data: { query: query },
+                    success: function (data) {
+                        $('#resultsTableBody').html(data);
+                    },
+                    error: function () {
+                        console.error('An error occurred while processing your request.');
+                    }
+                });
+            });
+        });
+    </script>
+}
+

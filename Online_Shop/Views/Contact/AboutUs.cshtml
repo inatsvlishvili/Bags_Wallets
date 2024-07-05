@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Bags_Wallets.ViewModels.AboutUsViewModel>
+
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content ">
+    <div class="mdl-grid ui-tables">
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h1 class="mdl-card__title-text">ჩვენ შესახებ</h1>
+                </div>
+                <div class="mdl-card__supporting-text no-padding">
+                    <a asp-action="AddAboutUs" button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">ახლის შექმნა</a>
+                    <table class="mdl-data-table mdl-js-data-table">
+                        <thead>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">#</td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    სახელი1
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    ტექსტ1
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    ტექსტ2
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    ტექსტ3
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    სახელი2
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    ტექსტ4
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    ტექსტ5
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    ტექსტ6
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric">მართვა</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                int rowNo = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">@(rowNo += 1)</td>
+
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <span style="white-space: pre-line">@item.OurStoryTitle</span>
+                                    </td>
+
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        @* @Html.DisplayFor(modelItem => item.StoryText1) *@
+                                        <span style="white-space: pre-line">@item.StoryText1</span>
+                                                                                                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        @* @Html.DisplayFor(modelItem => item.StoryText2) *@
+                                        <span style="white-space: pre-line">@item.StoryText2</span>
+                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        @* @Html.DisplayFor(modelItem => item.StoryText3) *@
+                                        <span style="white-space: pre-line">@item.StoryText3</span>
+                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <span style="white-space: pre-line">@item.OurGoalTitle</span>
+                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        @* @Html.DisplayFor(modelItem => item.GoalText1) *@
+                                        <span style="white-space: pre-line">@item.GoalText1</span>
+                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        @* @Html.DisplayFor(modelItem => item.GoalText2) *@
+                                        <span style="white-space: pre-line">@item.GoalText2</span>
+                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        @* @Html.DisplayFor(modelItem => item.GoalText3) *@
+                                        <span style="white-space: pre-line">@item.GoalText3</span>
+                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <a asp-action="EditAboutUs" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised button--colored-orange">
+                                                <span class="material-icons">
+                                                    rotate_right
+                                                </span>რედაქტირება
+                                            </button>
+                                        </a>
+                                        <a asp-action="DeleteAboutUs" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised material-icons button--colored-red">
+                                                <span class="material-icons">
+                                                    delete
+
+                                                </span>წაშლა
+
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

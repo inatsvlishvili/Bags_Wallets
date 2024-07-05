@@ -1,0 +1,76 @@
+﻿@model Bags_Wallets.ViewModels.AboutUsViewModel
+
+@{
+    ViewData["Title"] = "DeleteAboutUs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>წაშლა</h2>
+        </div>
+        <hr />
+        <div class="mdl-card__supporting-text">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    სახელი1
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.OurStoryTitle)
+                </dd>
+                <dt class="col-sm-2">
+                    ტექსტ1
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.StoryText1)
+                </dd>
+                <dt class="col-sm-2">
+                    ტექსტ2
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.StoryText2)
+                </dd>
+                <dt class="col-sm-2">
+                    ტექსტ3
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.StoryText3)
+                </dd>
+                <dt class="col-sm-2">
+                    სახელი2
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.OurGoalTitle)
+                </dd>
+                <dt class="col-sm-2">
+                    ტექსტ4
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GoalText1)
+                </dd>
+                <dt class="col-sm-2">
+                    ტექსტ5
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GoalText2)
+                </dd>
+                <dt class="col-sm-2">
+                    ტექსტ6
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GoalText3)
+                </dd>
+            </dl>
+            <div>
+                <form asp-action="DeleteAboutUs">
+                    <input type="hidden" asp-for="Id" />
+                    <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+                        წაშლა
+                    </button>
+                </form>
+                <div>
+                    <a href="javascript:history.back()">უკან დაბრუნება</a>
+                </div>
+            </div>
+</main>

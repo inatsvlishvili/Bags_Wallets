@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Bags_Wallets.ViewModels.ProductViewModel>
+@* <div id="FilterResult"> *@
+@if (Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+            <div class="block2">
+                <div class="block2-pic hov-img0">
+                    <a href="@Url.Action("ProductDetail", "Home", new { id = item.Id })">
+                        @{
+                            <img src="@item.Images?.FirstOrDefault()?.ImagePath" width="315" height="390">
+                        }
+                    </a>
+                    <a href="@Url.Action("ProductDetail", "Home", new { id = item.Id })" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                        ნახვა
+                    </a>
+
+                </div>
+                <div class="block2-txt flex-w flex-t p-t-14">
+                    <div class="block2-txt-child1 flex-col-l ">
+                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                            @item.Title
+                        </a>
+
+                        <span class="stext-105 cl3">
+                            @item.Price ₾
+                        </span>
+                    </div>
+
+                    <div class="block2-txt-child2 flex-r p-t-3">
+                        <form asp-controller="WishList" asp-action="AddToWishlist" method="post">
+                            <input type="hidden" name="productId" value="@Model.FirstOrDefault().Id" />
+
+                            <button type="submit">
+                                @* <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-tooltip="ფავორიტი"> *@
+                                <a href="#" class="dis-block fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="ფავორიტი">
+                                    <img class="icon-heart1 dis-block trans-04" src="~/assets/shop/images/icons/icon-heart-01.png" alt="ICON">
+                                    @* <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/assets/shop/images/icons/icon-heart-02.png" alt="ICON">  *@
+
+                                </a>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+           }
+
+}
+else
+{
+    <tr>
+        <td colspan="2">მონაცემები ვერ მოიძებნა</td>
+    </tr>
+}

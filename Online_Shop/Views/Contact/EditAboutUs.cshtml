@@ -1,0 +1,79 @@
+﻿@model Bags_Wallets.ViewModels.AboutUsViewModel
+
+@{
+    ViewData["Title"] = "EditAboutUs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>ჩვენ შესახებ რედაქტირება</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <form asp-action="EditAboutUs" class="form" enctype="multipart/form-data">
+                <div class="form__article">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="OurStoryTitle" class="mdl-textfield__input" type="text" id="OurStoryTitle" />
+                            <label asp-for="OurStoryTitle" class=" mdl-textfield__label" for="OurStoryTitle">ჩვენ შესახებ "სახელწოდება"</label>
+                        </div>
+                    </div>
+                    <div class="form__article employer-form__general_skills">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="StoryText1" type="text" rows="3" id="StoryText1"></textarea>
+                            <label asp-for="StoryText1" class="mdl-textfield__label" for="StoryText1">პირველი ტექსტი</label>
+                        </div>
+                    </div>
+                    <div class="form__article employer-form__general_skills">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="StoryText2" type="text" rows="3" id="StoryText2"></textarea>
+                            <label asp-for="StoryText2" class="mdl-textfield__label" for="StoryText2">მეორე ტექსტი</label>
+                        </div>
+                    </div>
+                    <div class="form__article employer-form__general_skills">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="StoryText3" type="text" rows="3" id="StoryText3"></textarea>
+                            <label asp-for="StoryText3" class="mdl-textfield__label" for="StoryText3">მესამე ტექსტი</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="OurGoalTitle" class="mdl-textfield__input" type="text" id="OurGoalTitle" />
+                            <label asp-for="OurGoalTitle" class=" mdl-textfield__label" for="OurGoalTitle">ჩვენი მიზანი "სახელწოდება"</label>
+                        </div>
+                    </div>
+                    <div class="form__article employer-form__general_skills">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="GoalText1" type="text" rows="3" id="GoalText1"></textarea>
+                            <label asp-for="GoalText1" class="mdl-textfield__label" for="GoalText1">პირველი ტექსტ</label>
+                        </div>
+                    </div>
+                    <div class="form__article employer-form__general_skills">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="GoalText2" type="text" rows="3" id="GoalText2"></textarea>
+                            <label asp-for="GoalText2" class="mdl-textfield__label" for="GoalText2">მეორე ტექსტი</label>
+                        </div>
+                    </div>
+                    <div class="form__article employer-form__general_skills">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="GoalText3" type="text" rows="3" id="GoalText3"></textarea>
+                            <label asp-for="GoalText3" class="mdl-textfield__label" for="GoalText3">მესამე ტექსტი</label>
+                        </div>
+                    </div>
+                    <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">
+                        რედაქტირება
+                    </button>
+                </div>
+
+            </form>
+        </div>
+        <div>
+            <a href="javascript:history.back()">უკან დაბრუნება</a>
+        </div>
+    </div>
+</main>
+
+
+
+

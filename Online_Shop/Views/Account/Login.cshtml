@@ -1,0 +1,45 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/assets/images/profile.jpg');">
+    <h2 class="ltext-105 cl0 txt-center" style="color-black;">
+        <p style="color:black;">
+            <b> პ რ ო ფ ი ლ ი</b>
+        </p>
+    </h2>
+</section>
+
+<section class="bg0 p-t-104 p-b-116">
+    <div class="container">
+        <div class="flex-w flex-tr">
+            <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+                <form asp-action="Login" class="form" method="post">
+                    <h4 class="mtext-105 cl2 txt-center p-b-30">
+                        ა ვ ტ ო რ ი ზ ა ც ი ა
+                    </h4>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="Email" placeholder="მეილი">
+                        <img class="how-pos4 pointer-none" src="~/assets/shop/images/icons/icon-email2.png" alt="ICON">
+                    </div>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="Password" placeholder="პაროლი">
+                        <img class="how-pos4 pointer-none" src="~/assets/shop/images/icons/icon-password.png" alt="ICON">
+                    </div>
+                    <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+                        შესვლა
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

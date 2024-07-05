@@ -1,0 +1,137 @@
+﻿@model EditUserViewModel
+@{
+    ViewData["Title"] = "EditUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>Form</h2>
+            <div class="mdl-card__subtitle">Please complete the form</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            <form asp-action="EditUser" class="form" method="post" enctype="multipart/form-data">
+                <div class="form__article">
+                    <h3>Personal data</h3>
+
+
+
+                   @*  <div class="form-group row">
+                        <label asp-for="Id" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <input asp-for="Id" disabled class="form-control">
+                        </div>
+                    </div> *@
+
+                  @*   <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="UserName" class="mdl-textfield__input" type="text" id="UserName" value="@Model.UserName" />
+                            <label asp-for="UserName" class=" mdl-textfield__label" for="firstName">UserName</label>
+                        </div>
+                    </div> *@
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Email" class="mdl-textfield__input" type="text" id="Email" value="@Model.Email" />
+                            <label asp-for="Email" class=" mdl-textfield__label" for="firstName">Email</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="PhoneNumber" class="mdl-textfield__input" type="text" id="PhoneNumber" value="@Model.PhoneNumber" />
+                            <label asp-for="PhoneNumber" class=" mdl-textfield__label" for="firstName">PhoneNumber</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="City" class="mdl-textfield__input" type="text" id="City" value="@Model.City" />
+                            <label asp-for="City" class=" mdl-textfield__label" for="firstName">City</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Address" class="mdl-textfield__input" type="text" id="Address" value="@Model.Address" />
+                            <label asp-for="Address" class=" mdl-textfield__label" for="firstName">Address</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                        <input asp-for="Role" class="mdl-textfield__input" value="არჩევა" type="text" id="Role" readonly tabIndex="-1" />
+
+                        <label asp-for="Role" class="mdl-textfield__label" for="Role">როლი</label>
+
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown mdl-cell--10-col" for="Role">
+                            <li class="mdl-menu__item">Admin</li>
+                            <li class="mdl-menu__item">User</li>
+                            <li class="mdl-menu__item">Manager</li>
+                        </ul>
+
+                        <label for="Role">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                    </div>
+
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a asp-action="ListUsers" class="btn btn-primary">Cancel</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>User Roles</h3>
+                        </div>
+                        <div class="card-body">
+                         @*    @if (Model.Roles.Any())
+                            {
+                                foreach (var role in Model.Roles)
+                                {
+                                    <h5 class="card-title">@role</h5>
+                                }
+                            }
+                            else
+                            {
+                                <h5 class="card-title">None at the moment</h5>
+                            } *@
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" style="width:auto" class="btn btn-primary">
+                                Manage Roles
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h3>User Claims</h3>
+                        </div>
+                        <div class="card-body">
+                            @* @if (Model.Claims.Any())
+                            {
+                                foreach (var claim in Model.Claims)
+                                {
+                                    <h5 class="card-title">@claim</h5>
+                                }
+                            }
+                            else
+                            {
+                                <h5 class="card-title">None at the moment</h5>
+                            } *@
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" style="width:auto" class="btn btn-primary">
+                                Manage Claims
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

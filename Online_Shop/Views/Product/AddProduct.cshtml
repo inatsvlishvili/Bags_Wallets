@@ -1,0 +1,153 @@
+﻿@model Bags_Wallets.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>პროდუქტის დამატება</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <form asp-action="AddProduct" class="form" method="post" enctype="multipart/form-data">
+                <div class="form__article">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Title" class="mdl-textfield__input" type="text" id="Title" />
+                            <label asp-for="Title" class=" mdl-textfield__label" for="Title">სახელი</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Collection" class="mdl-textfield__input" type="text" id="Collection" />
+                            <label asp-for="Collection" class=" mdl-textfield__label" for="Collection">კოლექცია</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Price" class="mdl-textfield__input" type="text" id="Price" />
+                            <label asp-for="Price" class="mdl-textfield__label" for="Price">ფასი</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Quantity" class="mdl-textfield__input" type="text" id="Quantity" />
+                            <label asp-for="Quantity" class="mdl-textfield__label" for="Quantity">რაოდენობა</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Discount" class="mdl-textfield__input" type="text" id="Discount" />
+                            <label asp-for="Discount" class="mdl-textfield__label" for="Discount">ფასდაკლება</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                        <input asp-for="IsOnSale" class="mdl-textfield__input" value="არჩევა" type="text" id="IsOnSale" readonly tabIndex="-1" />
+                        <label asp-for="IsOnSale" class="mdl-textfield__label" for="IsOnSale">ფასდაკლება</label>
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown mdl-cell--10-col" for="IsOnSale">
+                            <li class="mdl-menu__item">true</li>
+                            <li class="mdl-menu__item">false</li>
+                        </ul>
+                        <label for="IsOnSale">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                        <input asp-for="CategoryId" class="mdl-textfield__input" value="არჩევა" type="text" id="CategoryId" readonly tabIndex="-1" />
+
+                        <label asp-for="CategoryId" class="mdl-textfield__label" for="CategoryId">კატეგორია</label>
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown mdl-cell--10-col" for="CategoryId">
+                            @foreach (var item in ViewBag.Category)
+                            {
+                                <li class="mdl-menu__item">@item.Id</li>
+
+                            }
+                        </ul>
+                        <label for="SellerId">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                        <input asp-for="Gender" class="mdl-textfield__input" value="არჩევა" type="text" id="Gender" readonly tabIndex="-1" />
+                        <label asp-for="Gender" class="mdl-textfield__label" for="Gender">ტიპი</label>
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown mdl-cell--10-col" for="Gender">
+                            @*   @foreach (var gender in Enum.GetValues(typeof(Gender)))
+                            {
+
+                            <li class="mdl-menu__item">@(((Gender)gender).DisplayName())</li>
+                            } *@
+                            @foreach (var item in Html.GetEnumSelectList<Bags_Wallets.Models.Gender>())
+                            {
+                                <li class="mdl-menu__item">
+                                    <option value="@item.Value">@item.Text</option>
+                                </li>
+                            }
+                        </ul>
+                        <label for="Gender">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                    </div>
+
+                <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                        <input asp-for="SellerId" class="mdl-textfield__input" value="არჩევა" type="text" id="SellerId" readonly tabIndex="-1" />
+                        <label asp-for="SellerId" class="mdl-textfield__label" for="SellerId">გამყიდველი</label>
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown mdl-cell--10-col" for="SellerId">
+                             @foreach (var item in ViewBag.Seller)
+                            @* <input name="productId" type="hidden" value="@ViewBag.ProductDetail.Id" /> *@
+                            {
+                                <li class="mdl-menu__item">@item.Id</li>
+
+                            } 
+                        </ul>
+                        <label for="SellerId">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                    </div> 
+
+               @*      <div class="form-group">
+                        <label asp-for="Seller" class="control-label"></label>
+                        <select asp-for="Seller" class="form-control">
+                            @foreach (var item in ViewBag.Seller)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Seller" class="text-danger"></span>
+                    </div> *@
+
+
+
+                    <div class="form-group mdl-cell--5-col">
+                        <label asp-for="ImageFiles" class="control-label">აირჩიეთ სურათი</label>
+                        <input class="mdl-textfield__input" asp-for="ImageFiles" class="form-control" type="file" multiple />
+                    </div>
+
+                    <div class="form__article employer-form__general_skills">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="Description" type="text" rows="3" id="Description"></textarea>
+                            <label asp-for="Description" class="mdl-textfield__label" for="Description">აღწერა</label>
+                        </div>
+                    </div>
+                    <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue">
+                        დამატება
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <a href="javascript:history.back()">უკან დაბრუნება</a>
+        </div>
+    </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

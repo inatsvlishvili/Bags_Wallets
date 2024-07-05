@@ -1,0 +1,72 @@
+﻿@model Bags_Wallets.Models.AboutUs
+
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/assets/images/b4.jpg');">
+    <h2 class="ltext-105 cl0 txt-center">
+        ჩვენ შესახებ
+    </h2>
+</section>
+
+<form asp-controller="Home" asp-action="AboutUs">
+    <section class="bg0 p-t-75 p-b-120" id="contactPage">
+        <div class="container">
+            <div class="row p-b-148">
+                <div class="col-md-7 col-lg-8">
+                    <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+                        <h3 class="mtext-111 cl2 p-b-16">
+                            <b>@Model.OurStoryTitle</b>
+                        </h3>
+
+                        <p class="stext-113 cl6 p-b-26">
+                            @Model.StoryText1
+                        </p>
+
+                        <p class="stext-113 cl6 p-b-26">
+                            @Model.StoryText2
+                        </p>
+
+                        <p class="stext-113 cl6 p-b-26">
+                            @Model.StoryText3
+                        </p>
+                    </div>
+                </div>
+                <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+                    <div class="how-bor1 ">
+                        <div class="hov-img0">
+                            <img src="~/assets/images/w4.jpg" alt="IMG">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
+                    <div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
+                        <h3 class="mtext-111 cl2 p-b-16">
+                            <b>@Model.OurGoalTitle</b>
+                        </h3>
+                        <p class="stext-113 cl6 p-b-26">
+                            @Model.GoalText1
+                        </p>
+                        <p class="stext-113 cl6 p-b-26">
+                            @Model.GoalText2
+                        </p>
+                        <p class="stext-113 cl6 p-b-26">
+                            @Model.GoalText3
+                        </p>
+                    </div>
+                </div>
+                <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
+                    <div class="how-bor2">
+                        <div class="hov-img0">
+                            <img src="~/assets/images/w2.jpg" alt="IMG">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

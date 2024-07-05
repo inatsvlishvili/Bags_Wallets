@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Bags_Wallets.ViewModels.PageImageCategoryViewModel>
+
+@{
+    ViewData["Title"] = "PageImageCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content ">
+
+    <div class="mdl-grid ui-tables">
+
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card mdl-shadow--2dp">
+
+
+
+                <div class="mdl-card__title">
+                    <h1 class="mdl-card__title-text">სურათის კატეგორია</h1>
+                </div>
+
+
+                @*  <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size has-icon-left">
+
+                <input type="text" class="form-control mdl-textfield__input" id="productSearch" />
+
+                <label class="mdl-textfield__label" for="productSearch"><b>ძ ე ბ ნ ა</b></label>
+                </div>
+
+                </div> *@
+
+                <input type="text" id="productSearch" placeholder="Search for products..." />
+
+
+                <div class="mdl-card__supporting-text no-padding">
+                    <table id="productDetails" class="mdl-data-table mdl-js-data-table">
+                        <thead>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">#</td>
+                                <td class="mdl-data-table__cell--non-numeric">@Html.DisplayNameFor(model => model.Title)</td>
+                                
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                int rowNo = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">@(rowNo += 1)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Title)</td>
+                                  
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <a asp-action="Edit" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised button--colored-orange">
+                                                <span class="material-icons">
+                                                    rotate_right
+                                                </span>Edit
+                                            </button>
+                                        </a>
+
+                                        <a asp-action="Delete" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised material-icons button--colored-red">
+                                                <span class="material-icons">
+                                                    delete
+
+                                                </span>Delete
+
+                                            </button>
+                                        </a>
+                                    </td>
+                                  
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

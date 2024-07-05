@@ -1,0 +1,52 @@
+﻿@model Bags_Wallets.ViewModels.ContactUsViewModel
+
+@{
+    ViewData["Title"] = "DeleteContactUs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>წაშლა</h2>
+        </div>
+        <hr />
+        <div class="mdl-card__supporting-text">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    სახელი
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    მეილი
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt class="col-sm-2">
+                    ტელეფონი
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+                <dt class="col-sm-2">
+                    ტექსტი
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Text)
+                </dd>
+            </dl>
+            <div>
+                <form asp-action="DeleteContactUs">
+                    <input type="hidden" asp-for="Id" />
+                    <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+                        წაშლა
+                    </button>
+                </form>
+                <div>
+                    <a href="javascript:history.back()">უკან დაბრუნება</a>
+                </div>
+            </div>
+</main>

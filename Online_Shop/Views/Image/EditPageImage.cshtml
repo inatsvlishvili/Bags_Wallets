@@ -1,0 +1,94 @@
+﻿@model Bags_Wallets.ViewModels.PageImageViewModel
+@* @model Bags_Wallets.Models.PageImage *@
+
+@{
+    ViewData["Title"] = "EditPageImage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>Form</h2>
+            <div class="mdl-card__subtitle">Please complete the form</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            <form asp-action="EditPageImage" class="form" method="post" enctype="multipart/form-data">
+                <div class="form__article">
+                    <h3>Personal data</h3>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Title" class="mdl-textfield__input" type="text" id="Title" />
+                            <label asp-for="Title" class=" mdl-textfield__label" for="Title">სახელი</label>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input asp-for="Collection" class="mdl-textfield__input" type="text" id="Collection" />
+                            <label asp-for="Collection" class=" mdl-textfield__label" for="Collection">კოლექცია</label>
+                        </div>
+                    </div>
+
+                    @*    <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input asp-for="Description" class="mdl-textfield__input" type="text" id="Description" />
+                    <label asp-for="Description" class="mdl-textfield__label" for="Description">აღწერა</label>
+                    </div>
+                    </div> *@
+
+                    <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                        <input asp-for="PageImageCategoryId" class="mdl-textfield__input" value="არჩევა" type="text" id="PageImageCategoryId" readonly tabIndex="-1" />
+
+                        <label asp-for="PageImageCategoryId" class="mdl-textfield__label" for="MatterId">კატეგორია</label>
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown mdl-cell--10-col" for="PageImageCategoryId">
+                             @foreach (var item in ViewBag.pageImageCategory)
+                            {
+                                <li class="mdl-menu__item">@item.Id </li>
+                            }
+
+
+                        </ul>
+                        <label for="PageImageCategoryId">
+                            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                        </label>
+                    </div>
+
+                    <div class="form-group mdl-cell--4-col">
+                        <label for="image">
+                            <label asp-for="ImageFile" class="control-label">ასარჩევად დააჭირეთ სურათს</label>
+                            <input type="file" name="ImageFile" id="image" style="display:none;" multiple />
+                            <img src="~/Images/PageImages/@Model.ImageName" class="profile-image color--smooth-gray" style="width: 200px; height: 150px; border-radius:1rem" />
+                            @* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcxU00aT_8732RpJ6wVOf9zsgT4kA2UBlxg&s" width="200px" style="border-radius: 50%;" /> *@
+                        </label>
+                    </div>
+
+                    <div class="form__article employer-form__general_skills">
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" input asp-for="Description" type="text" rows="3" id="Description"></textarea>
+
+                            @*  <input asp-for="Description" class="mdl-textfield__input" type="text" id="Description" /> *@
+
+
+                            <label asp-for="Description" class="mdl-textfield__label" for="Description">აღწერა</label>
+                        </div>
+                    </div>
+
+                    <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">
+                        რედაქტირება
+                    </button>
+                        @* <button id="submit_button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> *@
+
+                    </div>
+            </form>
+        </div>
+        <div>
+            <a href="javascript:history.back()">უკან დაბრუნება</a>
+        </div>
+    </div>
+    </div>
+    </div>
+</main>
+
+

@@ -1,0 +1,88 @@
+﻿@model EditUserViewModel
+@inject SignInManager<ApplicationUser> signInManager;
+
+@{
+    ViewData["Title"] = "UpdateProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@* <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/assets/images/profile.jpg');">
+    <h2 class="ltext-105 cl0 txt-center" style="color-black;">
+        <p style="color:black;">
+            <b> პ რ ო ფ ი ლ ი</b>
+        </p>
+    </h2>
+</section>
+
+
+<!-- Content page -->
+<section class="bg0 p-t-52 p-b-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9 p-b-80">
+                <div class="p-r-45 p-r-0-lg">
+
+                    @await Html.PartialAsync("_AccountPartial") *@
+
+@*  @if (signInManager.IsSignedIn(User))
+{
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="Account" asp-action="UpdateProfile" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" value="@Model.LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" value="@Model.Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" class="form-control" value="@Model.PhoneNumber" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City"></label>
+                    <input asp-for="City" class="form-control" value="@Model.City" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address"></label>
+                    <input asp-for="Address" class="form-control" value="@Model.Address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">პროფილის განახლება</button>
+            </form>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("_AccountPartial")
+
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Account" asp-action="register">
+            Register
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Account" asp-action="login">
+            Login
+        </a>
+    </li>
+} 
+
+ *@
+
+

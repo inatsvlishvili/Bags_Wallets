@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Bags_Wallets.ViewModels.SellerViewModel>
+
+@if (Model.Any())
+{
+    @* @{
+        int rowNo = 0;
+    } *@
+    @foreach (var item in Model)
+    {
+        <tr>
+            @* <td class="mdl-data-table__cell--non-numeric">@(rowNo += 1)</td> *@
+            <td class="mdl-data-table__cell--non-numeric">1</td>
+            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Title)</td>
+            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.FullName)</td>
+            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Email)</td>
+            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.City)</td>
+            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Address)</td>
+            <td class="mdl-data-table__cell--non-numeric">@Model.FirstOrDefault().CreatedateTime.ToString("MM/dd/yyyy")</td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <span style="white-space: pre-line">@Html.DisplayFor(modelItem => item.Description)</span>
+            </td>
+
+            <td class="mdl-data-table__cell--non-numeric">
+                <a asp-action="EditSeller" asp-route-id="@item.Id">
+                    <button class="mdl-button mdl-js-button mdl-button--raised button--colored-orange">
+                        <span class="material-icons">
+                            rotate_right
+                        </span>შესწორება
+                    </button>
+                </a>
+
+                <a asp-action="DeleteSeller" asp-route-id="@item.Id">
+                    <button class="mdl-button mdl-js-button mdl-button--raised material-icons button--colored-red">
+                        <span class="material-icons">
+                            delete
+
+                        </span>წაშლა
+
+                    </button>
+                </a>
+            </td>
+           
+        </tr>
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="2">მონაცემი ვერ მოიძებნა</td>
+    </tr>
+}

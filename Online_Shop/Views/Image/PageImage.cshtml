@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Bags_Wallets.ViewModels.PageImageViewModel>
+
+@{
+    ViewData["Title"] = "PageImage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="mdl-layout__content ">
+    <div class="mdl-grid ui-tables">
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card mdl-shadow--2dp">
+
+                <div class="mdl-card__title">
+                    <h1 class="mdl-card__title-text">ყველა პროდუქტი</h1>
+                </div>
+                <div class="mdl-card__supporting-text no-padding">
+                    <a asp-action="AddProduct" button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">ახლის შექმნა</a>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                        <input type="text" id="searchInput" class="mdl-textfield__input" />
+                        <label class="mdl-textfield__label" for="name">ძ ე ბ ნ ა . . .</label>
+                    </div>
+                    <table class="mdl-data-table mdl-js-data-table">
+                        <thead>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">#</td>
+                                <td class="mdl-data-table__cell--non-numeric">სახელი</td>
+                                <td class="mdl-data-table__cell--non-numeric">კოლექცია</td>
+                                <td class="mdl-data-table__cell--non-numeric">აღწერა</td>
+                                <td class="mdl-data-table__cell--non-numeric">კატეგორია</td>
+                                <td class="mdl-data-table__cell--non-numeric">სურათი</td>
+                                <td class="mdl-data-table__cell--non-numeric">თარიღი</td>
+                                <td class="mdl-data-table__cell--non-numeric">მართვა</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                int rowNo = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">@(rowNo += 1)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Collection)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.PageImageCategory.TitleGEO)</td>
+                                    @* <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.PageImageCategory.)</td> *@
+                                    @* <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.ImageName)</td> *@
+                                    @* <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.Catename)</td> *@
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <img src="~/Images/PageImages/@item.ImageName" class="profile-image color--smooth-gray" style="width: 100; height: 80px; border-radius:1rem"/>
+                                    </td>
+                                    <td class="mdl-data-table__cell--non-numeric">@Html.DisplayFor(modelItem => item.CreatedateTime)</td>
+
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <a asp-action="EditPageImage" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised button--colored-orange">
+                                                <span class="material-icons">
+                                                    rotate_right
+                                                </span>რედაქტირება
+                                            </button>
+                                        </a>
+
+                                        <a asp-action="DeletePageImage" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised material-icons button--colored-red">
+                                                <span class="material-icons">
+                                                    delete
+
+                                                </span>წაშლა
+
+                                            </button>
+                                        </a>
+                                    </td>
+                                    @* <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal" asp-action="Delete" asp-route-id="@item.Id">Delete</button></td> *@
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
