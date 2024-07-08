@@ -9,16 +9,12 @@ namespace Bags_Wallets.Controllers
 {
     public class WishListController : Controller
     {
-
         private readonly IMapper _mapper;
         private readonly IWishlistRepository _wishlistRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
-
-
         public WishListController(IMapper mapper, IWishlistRepository wishlistRepository, UserManager<ApplicationUser> userManager)
         {
-
             _mapper = mapper;
             _wishlistRepository = wishlistRepository;
             _userManager = userManager;

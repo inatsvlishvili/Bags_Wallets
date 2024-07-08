@@ -27,7 +27,6 @@ namespace Bags_Wallets.ViewModels
         public List<IFormFile> ImageFiles { get; set; } = new List<IFormFile>();
         public List<string> ExistingImagePaths { get; set; } = new List<string>();
 
-
         public int TotalPages { get; set; }
         public int CurrentPage { get; set; }
 

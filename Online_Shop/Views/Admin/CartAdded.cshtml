@@ -56,6 +56,20 @@
                                             <p>no image</p>
                                         }
                                     </td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <a asp-action="RemoveFromCart" asp-controller="ShoppingCartController" asp-route-id="@item.Id">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised material-icons button--colored-red">
+                                                <span class="material-icons">
+                                                    delete
+
+                                                </span>წაშლა
+
+                                            </button>
+                                        </a>
+                                    </td>
+
+
+
                                 </tr>
                             }
                         </tbody>

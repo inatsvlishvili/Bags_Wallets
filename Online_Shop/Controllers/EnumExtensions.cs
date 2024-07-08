@@ -7,7 +7,6 @@ namespace Bags_Wallets
     {
         public static string DisplayName(this Enum value)
         {
-            // the following is my variation on the extension method you linked to
             if (value == null)
             {
                 return null;

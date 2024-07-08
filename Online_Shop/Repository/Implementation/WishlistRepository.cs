@@ -10,24 +10,29 @@ namespace Bags_Wallets.Repository.Implementation
     {
         private readonly ShopDbContext _DbContext;
         private readonly UserManager<ApplicationUser> _userManager;
-       
-
         public WishlistRepository(ShopDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
-
             _DbContext = dbContext;
             _userManager = userManager;
-        
-        }
 
+        }
 
         public async Task<Wishlist> GetByUserIdAsync(string userId)
         {
             return await _DbContext.Wishlists
                 .Include(w => w.WishlistItems)
-                .ThenInclude(w=>w.Product.Images)
                 .ThenInclude(wi => wi.Product)
+                .ThenInclude(wp => wp.Images)
                 .FirstOrDefaultAsync(w => w.ApplicationUserId == userId);
+        }
+        public async Task<Wishlist> GetAllWishlistAsync()
+        {
+            return await _DbContext.Wishlists
+                .Include(y => y.ApplicationUser)
+                .Include(w => w.WishlistItems)
+                .ThenInclude(wi => wi.Product)
+                .ThenInclude(wp => wp.Images)
+                .FirstOrDefaultAsync();
         }
 
         public async Task AddToWishlistAsync(string userId, int productId)

@@ -27,7 +27,6 @@ namespace Bags_Wallets.Repository.Interface
         Task AddCommentAsync(Comment comment);
         Task UpdateCommentAsync(Comment comment);
         Task DeleteCommentAsync(int commentid);
-
-        
+                
     }
 }

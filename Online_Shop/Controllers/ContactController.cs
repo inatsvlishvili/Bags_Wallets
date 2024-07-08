@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using Bags_Wallets.Data;
 using Bags_Wallets.Models;
-using Bags_Wallets.Repository.Implementation;
 using Bags_Wallets.Repository.Interface;
 using Bags_Wallets.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Core.Types;
-using System.Security.Cryptography.Pkcs;
 
 namespace Bags_Wallets.Controllers
 {
@@ -27,86 +24,12 @@ namespace Bags_Wallets.Controllers
             _mapper = mapper;
         }
 
-        //public async Task<IActionResult> ContactInfo()
-        //{
-        //    var aboutUsList = await _contactRepository.GetAllContactInfoAsync();
-        //    var viewModelList = aboutUsList.Select(a => new ContactInfoViewModel
-        //    {
-        //        Id = a.Id,
-        //        Title = a.Title,
-        //        Address = a.Address,
-        //        Phone = a.Phone,
-        //        Email = a.Email,
-        //        Text = a.Text,
-        //    });
-
-        //    return View(viewModelList);
-        //}
-
-        //public IActionResult AddContactInfo()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public async Task<IActionResult> AddContactInfo(ContactInfoViewModel contactinfo)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var info = new ContactInfo
-        //        {
-        //            Title = contactinfo.Title,
-        //            Address = contactinfo.Address,
-        //            Phone = contactinfo.Phone,
-        //            Email = contactinfo.Email,
-        //            Text = contactinfo.Text,
-
-        //        };
-
-        //        await _contactRepository.AddContactInfoAsync(info);
-        //        return RedirectToAction(nameof(ContactController.ContactInfo), "Contact");
-        //    }
-
-        //    return View(contactinfo);
-        //}
-        //public IActionResult EditContactInfo()
-        //{
-        //    return View();
-        //}
-        //public IActionResult DeleteContactInfo()
-        //{
-        //    return View();
-        //}
-
-        ///// <summary>
-        ///// /////////////////////////////////////////////
-        ///// </summary>
-        ///// <returns></returns>
-
-        //-ContactUs-//
         public async Task<IActionResult> ContactUs()
         {
             var contactMessages = await _contactRepository.GetAllContactUsAsync();
             var viewModel = _mapper.Map<IEnumerable<ContactUsViewModel>>(contactMessages);
             return View(viewModel);
         }
-
-        //public IActionResult AddContactUs()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AddContactUs(ContactUsViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var contactUs = _mapper.Map<ContactUs>(model);
-        //        await _contactRepository.AddContactUsAsync(contactUs);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(model);
-        //}
 
         public async Task<IActionResult> EditContactUs(int id)
         {
@@ -166,9 +89,6 @@ namespace Bags_Wallets.Controllers
             }
             return View(contactUs);
         }
-
-        //-ContactInfo-//
-
         public async Task<IActionResult> ContactInfo()
         {
             var contactInfo = await _contactRepository.GetAllContactInfoAsync();
@@ -232,10 +152,6 @@ namespace Bags_Wallets.Controllers
             await _contactRepository.DeleteContactInfoAsync(viewModel.Id);
             return RedirectToAction(nameof(ContactInfo));
         }
-
-
-
-        //-AboutUs-//
 
         public async Task<IActionResult> AboutUs()
         {
@@ -303,31 +219,12 @@ namespace Bags_Wallets.Controllers
             return RedirectToAction(nameof(AboutUs));
         }
 
-        //-Comment-//
-
         public async Task<IActionResult> Comment()
         {
             var comment = await _contactRepository.GetAllCommentAsync();
             var viewModel = _mapper.Map<IEnumerable<CommentViewModel>>(comment);
             return View(viewModel);
         }
-
-        //public IActionResult AddComment()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> AddComment(CommentViewModel viewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var comment = _mapper.Map<Comment>(viewModel);
-        //        await _contactRepository.AddCommentAsync(comment);
-        //        return RedirectToAction(nameof(Comment));
-        //    }
-        //    return View(viewModel);
-        //}
 
         public async Task<IActionResult> EditComment(int id)
         {
@@ -372,13 +269,5 @@ namespace Bags_Wallets.Controllers
         }
 
     }
-
-
-
-
-
-
-
-
 }
 

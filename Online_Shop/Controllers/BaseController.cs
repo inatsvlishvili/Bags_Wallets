@@ -14,12 +14,11 @@ namespace Bags_Wallets.Controllers
         {
             _DbContext = DbContext;
         }
-
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             ViewBag.ContactInfo = _DbContext.ContactInfos.FirstOrDefault();
             ViewBag.Gender = _DbContext.Products.Include(x => x.Gender).ToListAsync();
-           
+
             base.OnActionExecuting(filterContext);
         }
     }

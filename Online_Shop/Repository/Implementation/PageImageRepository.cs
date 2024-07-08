@@ -1,13 +1,7 @@
-﻿using Bags_Wallets.Controllers;
-using Bags_Wallets.Data;
+﻿using Bags_Wallets.Data;
 using Bags_Wallets.Models;
 using Bags_Wallets.Repository.Interface;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Bags_Wallets.ViewModels;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using AutoMapper;
 
 
@@ -28,13 +22,7 @@ namespace Bags_Wallets.Repository.Implementation
         }
         public async Task<IEnumerable<PageImage>> GetAllAsync()
         {
-            //var categoryName = _DbContext.PageImages.Select(model => new PageImageViewModel()
-            //{
-            //    PageImageCategoryName = model.PageImageCategory.TitleGEO
-
-            //}).ToListAsync();
-
-            return await _DbContext.PageImages.Include(x=>x.PageImageCategory).ToListAsync();
+            return await _DbContext.PageImages.Include(x => x.PageImageCategory).ToListAsync();
         }
 
         public async Task<PageImage> GetByIdAsync(int id)

@@ -1,15 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using Bags_Wallets.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using Bags_Wallets.Models;
 using Bags_Wallets.ViewModels;
-using System.Security.Claims;
 using Bags_Wallets.Repository.Interface;
 using Microsoft.AspNetCore.Identity;
-using Bags_Wallets.Repository.Implementation;
 using AutoMapper;
 
 namespace Bags_Wallets.Controllers
@@ -22,8 +15,6 @@ namespace Bags_Wallets.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
 
-
-
         public OrderController(IOrderRepository orderRepository, UserManager<ApplicationUser> userManager, IMapper mapper, IShoppingCartItemRepository shoppingCartRepository)
         {
             _orderRepository = orderRepository;
@@ -31,11 +22,7 @@ namespace Bags_Wallets.Controllers
             _mapper = mapper;
             _shoppingCartrepository = shoppingCartRepository;
 
-
         }
-
-
-       
 
         [HttpPost]
         public async Task<IActionResult> Checkout(OrderViewModel viewModel)

@@ -4,7 +4,6 @@ namespace Bags_Wallets.Repository.Interface
 {
     public interface IPageImageCategoryRepository
     {
-
         Task<IEnumerable<PageImageCategory>> GetAllAsync();
         Task<PageImageCategory> GetByIdAsync(int id);
         Task AddAsync(PageImageCategory category);

@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Bags_Wallets.Models;
 using Bags_Wallets.ViewModels;
-using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
 using Bags_Wallets.Data;
 using Bags_Wallets.Repository.Interface;
 using AutoMapper;
-using Bags_Wallets.Repository.Implementation;
+
 
 namespace Bags_Wallets.Controllers
 {
@@ -22,13 +19,14 @@ namespace Bags_Wallets.Controllers
         private readonly IWishlistRepository _wishlistRepository;
         private readonly IShoppingCartItemRepository _shoppingCartrepository;
         private readonly IOrderRepository _orderRepository;
+        private readonly IUserRepository _userRepository;
 
         private readonly IMapper _mapper;
 
 
-        public AdminController(ILogger<AdminController> logger, UserManager<ApplicationUser> userManager, 
+        public AdminController(ILogger<AdminController> logger, UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager, ShopDbContext dbContext, IMapper mapper, IWishlistRepository wishlistRepository,
-            IShoppingCartItemRepository shoppingCartrepository, IOrderRepository orderRepository)
+            IShoppingCartItemRepository shoppingCartrepository, IOrderRepository orderRepository, IUserRepository userRepository)
         {
             _logger = logger;
             _userManager = userManager;
@@ -36,35 +34,29 @@ namespace Bags_Wallets.Controllers
             _DbContext = dbContext;
             _mapper = mapper;
             _wishlistRepository = wishlistRepository;
-            _shoppingCartrepository = shoppingCartrepository;  
+            _shoppingCartrepository = shoppingCartrepository;
             _orderRepository = orderRepository;
-
+            _userRepository = userRepository;
         }
-
         public async Task<IActionResult> Sold()
         {
-            var userId = _userManager.GetUserId(User);
-            var orders = await _orderRepository.GetAllAsync();
-            var userOrders = orders.Where(o => o.ApplicationUserId == userId);
-            var orderViewModels = _mapper.Map<IEnumerable<OrderViewModel>>(userOrders);
+            var orders = await _orderRepository.GetAllOrdersAsync();
+            var orderViewModels = _mapper.Map<IEnumerable<Order>>(orders);
             return View(orderViewModels);
+
         }
-        private async Task<string> GetCurrentUserId()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            return user?.Id;
-        }
+
         public async Task<IActionResult> CartAdded()
         {
-            var userId = await GetCurrentUserId();
-            var cartItems = await _shoppingCartrepository.GetItemsByUserIdAsync(userId);
+
+            var cartItems = await _shoppingCartrepository.GetAllItemsAsync();
             var cartViewModel = _mapper.Map<ShoppingCart>(cartItems);
             return View(cartViewModel);
         }
         public async Task<IActionResult> Favorite()
         {
-            var userId = _userManager.GetUserId(User);
-            var wishlist = await _wishlistRepository.GetByUserIdAsync(userId);
+
+            var wishlist = await _wishlistRepository.GetAllWishlistAsync();
             var wishlistViewModel = _mapper.Map<Wishlist>(wishlist);
 
             return View(wishlistViewModel);
@@ -98,11 +90,8 @@ namespace Bags_Wallets.Controllers
             {
                 Id = user.Id,
                 Email = user.Email,
-
-                //UserName = user.UserName,
                 City = user.City,
-                //Claims = userClaims.Select(c => c.Value).ToList(),
-                // Roles = userRoles
+
             };
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -158,8 +147,6 @@ namespace Bags_Wallets.Controllers
                 return View(model);
             }
         }
-
-
         public IActionResult DeleteUser()
         {
 

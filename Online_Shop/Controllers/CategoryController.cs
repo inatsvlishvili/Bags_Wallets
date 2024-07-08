@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Bags_Wallets.Models;
 using AutoMapper;
 
-
 namespace Bags_Wallets.Controllers
 {
     public class CategoryController : Controller

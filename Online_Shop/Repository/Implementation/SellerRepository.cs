@@ -1,11 +1,7 @@
-﻿using Bags_Wallets.Controllers;
-using Bags_Wallets.Data;
+﻿using Bags_Wallets.Data;
 using Bags_Wallets.Models;
 using Bags_Wallets.Repository.Interface;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Bags_Wallets.Repository.Implementation
 {
@@ -14,7 +10,6 @@ namespace Bags_Wallets.Repository.Implementation
         private readonly ShopDbContext _DbContext;
         public SellerRepository(ShopDbContext dbContext)
         {
-
             _DbContext = dbContext;
 
         }

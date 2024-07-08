@@ -12,17 +12,25 @@ namespace Bags_Wallets.Repository.Implementation
         private readonly UserManager<ApplicationUser> _userManager;
         public OrderRepository(ShopDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
-
             _DbContext = dbContext;
             _userManager = userManager;
 
         }
-        public async Task<IEnumerable<Order>> GetAllAsync()
+        public async Task<IEnumerable<Order>> GetOrdersByUserAsync(string userId)
         {
             return await _DbContext.Orders
                 .Include(o => o.OrderItems)
-                .ThenInclude(o => o.Product.Images)
                 .ThenInclude(oi => oi.Product)
+                .Where(o => o.ApplicationUserId == userId)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        {
+            return await _DbContext.Orders
+                .Include(x => x.ApplicationUser)
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .ThenInclude(o => o.Images)
                 .ToListAsync();
         }
 

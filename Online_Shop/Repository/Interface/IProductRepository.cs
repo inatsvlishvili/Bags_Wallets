@@ -12,21 +12,18 @@ namespace Bags_Wallets.Repository.Interface
         Task<IEnumerable<Product>> GetWalletAsync();
         Task<IEnumerable<Product>> GetAllProductsAsync();
 
-
         Task<(IEnumerable<Product> Products, int TotalCount)> GetFilteredBagsAsync(Gender? gender, double? minPrice, double? maxPrice, string sortBy, int pageNumber, int pageSize);
         Task<(IEnumerable<Product> Products, int TotalCount)> GetFilteredWalletsAsync(Gender? gender, double? minPrice, double? maxPrice, string sortBy, int pageNumber, int pageSize);
         Task<(IEnumerable<Product> Products, int TotalCount)> GetProductsAsync(int pageNumber, int pageSize);
         Task<IEnumerable<Product>> GetAllAsync(int pageIndex, int pageSize);
         Task<(IEnumerable<Product> Products, int TotalCount)> GetAllBagAsync(int pageNumber, int pageSize);
 
-        
+
         Task<(IEnumerable<Product> Products, int TotalCount)> GetAllWalletAsync(int pageNumber, int pageSize);
         Task<Product> GetByIdAsync(int id);
         Task AddAsync(Product product);
         Task UpdateAsync(Product product);
         Task DeleteAsync(int id);
-        //Task<IEnumerable<Product>> SearchProducts(string searchText, int pageIndex, int pageSize);
-        //Task<int> GetSearchProductsCount(string searchText);
         Task<int> GetTotalProductCount();
 
     }

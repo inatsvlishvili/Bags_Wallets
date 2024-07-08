@@ -1,18 +1,14 @@
-﻿using Bags_Wallets.Controllers;
-using Bags_Wallets.Data;
+﻿using Bags_Wallets.Data;
 using Bags_Wallets.Models;
 using Bags_Wallets.Repository.Interface;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 
 namespace Bags_Wallets.Repository.Implementation
 {
     public class ContacRepository : IContactRepository
     {
         private readonly ShopDbContext _DbContext;
-
         public ContacRepository(ShopDbContext dbContext)
         {
 
@@ -20,7 +16,6 @@ namespace Bags_Wallets.Repository.Implementation
 
         }
 
-        //-ContactInfo-//
         public async Task<ContactInfo> GetContactInfoByIdAsync(int id)
         {
             return await _DbContext.ContactInfos.FindAsync(id);
@@ -52,10 +47,8 @@ namespace Bags_Wallets.Repository.Implementation
                 await _DbContext.SaveChangesAsync();
             }
         }
-       
 
-    //-AboutUs-//
-    public async Task<AboutUs> GetAboutUsByIdAsync(int id)
+        public async Task<AboutUs> GetAboutUsByIdAsync(int id)
         {
             return await _DbContext.AboutUs.FindAsync(id);
         }
@@ -86,8 +79,6 @@ namespace Bags_Wallets.Repository.Implementation
                 await _DbContext.SaveChangesAsync();
             }
         }
-
-        //-ContactUs-//
 
         public async Task<ContactUs> GetContactUsByIdAsync(int id)
         {
@@ -122,7 +113,6 @@ namespace Bags_Wallets.Repository.Implementation
             }
         }
 
-        //-Comment-//
         public async Task<Comment> GetCommentByIdAsync(int commentid)
         {
             return await _DbContext.Comments.FindAsync(commentid);

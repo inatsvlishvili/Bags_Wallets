@@ -1,16 +1,10 @@
 ﻿using Bags_Wallets.Data;
-using Bags_Wallets.Repository.Implementation;
 using Bags_Wallets.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bags_Wallets.Models;
 using Bags_Wallets.ViewModels;
-using NuGet.Protocol.Plugins;
 using AutoMapper;
-using System.Collections.Generic;
-using NuGet.Protocol.Core.Types;
-
-
 
 namespace Bags_Wallets.Controllers
 {
@@ -19,7 +13,6 @@ namespace Bags_Wallets.Controllers
         private readonly ShopDbContext _DbContext;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IPageImageRepository _imageRepository;
-        //private readonly IPageImageCategoryRepository _pageImageCategoryRepository;
         private readonly IMapper _mapper;
 
         public ImageController(ShopDbContext dbContext, IWebHostEnvironment webHostEnvironment, IPageImageRepository imageRepository,
@@ -28,13 +21,11 @@ namespace Bags_Wallets.Controllers
             _DbContext = dbContext;
             _webHostEnvironment = webHostEnvironment;
             _imageRepository = imageRepository;
-            //_pageImageCategoryRepository = PageImageCategoryRepository;
             _mapper = mapper;
         }
 
         public async Task<IActionResult> PageImage()
         {
-
             var pageImage = await _imageRepository.GetAllAsync();
             var viewModel = _mapper.Map<IEnumerable<PageImageViewModel>>(pageImage);
             return View(viewModel);
@@ -50,7 +41,6 @@ namespace Bags_Wallets.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> AddPageImage(PageImageViewModel model)
         {
             ViewBag.pageImageCategory = await _DbContext.PageImageCategories.ToListAsync();
@@ -93,7 +83,7 @@ namespace Bags_Wallets.Controllers
         {
             var pageImage = await _imageRepository.GetByIdAsync(id);
             ViewBag.pageImageCategory = await _DbContext.PageImageCategories.ToListAsync();
-            
+
             if (pageImage == null)
             {
                 return NotFound();
@@ -106,7 +96,6 @@ namespace Bags_Wallets.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPageImage(int id, PageImageViewModel model)
         {
-            
 
             if (ModelState.IsValid)
             {

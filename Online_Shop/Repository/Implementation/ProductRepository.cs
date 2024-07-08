@@ -2,10 +2,8 @@
 using Bags_Wallets.Models;
 using Bags_Wallets.Repository.Interface;
 using Bags_Wallets.ViewModels;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Drawing.Printing;
+
 
 namespace Bags_Wallets.Repository.Implementation
 {
@@ -25,7 +23,7 @@ namespace Bags_Wallets.Repository.Implementation
 
         public async Task<IEnumerable<Product>> GetFilteredBagssAsync(ProductListViewModel filter)
         {
-            var query = _DbContext.Products.Where(x=>x.Category.Title == "Bag").Include(x => x.Images).AsQueryable();
+            var query = _DbContext.Products.Where(x => x.Category.Title == "Bag").Include(x => x.Images).AsQueryable();
 
             if (filter.Gender.HasValue)
             {
@@ -45,10 +43,10 @@ namespace Bags_Wallets.Repository.Implementation
             {
                 query = query.Where(p => p.IsOnSale == filter.IsOnSale.Value);
             }
-           
+
             return await query.ToListAsync();
         }
-        
+
         public async Task<IEnumerable<Product>> GetFilteredWalletsAsync(ProductListViewModel filter)
         {
             var query = _DbContext.Products.Where(x => x.Category.Title == "Wallet").Include(x => x.Images).AsQueryable();
@@ -71,9 +69,9 @@ namespace Bags_Wallets.Repository.Implementation
             {
                 query = query.Where(p => p.IsOnSale == filter.IsOnSale.Value);
             }
-           
+
             return await query.ToListAsync();
-        } 
+        }
         public async Task<IEnumerable<Product>> GetFilteredSaleProductAsync(ProductListViewModel filter)
         {
             var query = _DbContext.Products.Where(x => x.IsOnSale == true).Include(x => x.Images).Take(30).AsQueryable();
@@ -82,18 +80,9 @@ namespace Bags_Wallets.Repository.Implementation
             {
                 query = query.Where(p => p.Gender == filter.Gender.Value);
             }
-                      
 
-            //if (filter.IsOnSale.HasValue)
-            //{
-            //    query = query.Where(p => p.IsOnSale == filter.IsOnSale.Value);
-            //}
-           
             return await query.ToListAsync();
         }
-
-
-
 
         public async Task<(IEnumerable<Product> Products, int TotalCount)> GetFilteredWalletsAsync(Gender? Gender, double? minPrice, double? maxPrice, string sortBy, int pageNumber, int pageSize)
         {
@@ -122,9 +111,6 @@ namespace Bags_Wallets.Repository.Implementation
                 case "added":
                     query = query.OrderByDescending(p => p.CreatedateTime);
                     break;
-                //case "ordered":
-                //    query = query.OrderByDescending(p => p.OrderCount);
-                //    break;
                 case "sale":
                     query = query.OrderByDescending(p => p.IsOnSale);
                     break;
@@ -171,9 +157,6 @@ namespace Bags_Wallets.Repository.Implementation
                 case "added":
                     query = query.OrderByDescending(p => p.CreatedateTime);
                     break;
-                //case "ordered":
-                //    query = query.OrderByDescending(p => p.OrderCount);
-                //    break;
                 case "sale":
                     query = query.OrderByDescending(p => p.IsOnSale);
                     break;
@@ -214,11 +197,11 @@ namespace Bags_Wallets.Repository.Implementation
             return await _DbContext.Products.Include(x => x.Seller).Include(x => x.Category).Include(p => p.Images).ToListAsync();
 
         }
-        
+
         public async Task<IEnumerable<Product>> GetBagAsync()
         {
             return await _DbContext.Products.Include(x => x.Seller).Include(x => x.Category)
-                .Include(p => p.Images).Where(x=>x.Category.Title == "Bag").ToListAsync();
+                .Include(p => p.Images).Where(x => x.Category.Title == "Bag").ToListAsync();
 
         }
         public async Task<IEnumerable<Product>> GetWalletAsync()
@@ -237,8 +220,6 @@ namespace Bags_Wallets.Repository.Implementation
                                          .ToListAsync();
             return (products, totalCount);
 
-            //return await _DbContext.Products.Include(x => x.Seller).Include(x => x.Category).Include(p => p.Images)
-            //    .Where(x => x.Category.Title == "Bag").ToListAsync();
         }
         public async Task<(IEnumerable<Product> Products, int TotalCount)> GetAllWalletAsync(int pageNumber, int pageSize)
         {
@@ -251,8 +232,6 @@ namespace Bags_Wallets.Repository.Implementation
 
             return (products, totalCount);
 
-            //return await _DbContext.Products.Include(x => x.Seller).Include(x => x.Category).Include(p => p.Images)
-            //    .Where(x => x.Category.Title == "Wallet").ToListAsync();
         }
 
         public async Task<Product> GetByIdAsync(int id)

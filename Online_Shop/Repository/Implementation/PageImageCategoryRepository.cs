@@ -1,12 +1,7 @@
-﻿using Bags_Wallets.Controllers;
-using Bags_Wallets.Data;
+﻿using Bags_Wallets.Data;
 using Bags_Wallets.Models;
 using Bags_Wallets.Repository.Interface;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Bags_Wallets.ViewModels;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
 namespace Bags_Wallets.Repository.Implementation

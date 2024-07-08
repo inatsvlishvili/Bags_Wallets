@@ -4,8 +4,6 @@ using Bags_Wallets.Models;
 using Bags_Wallets.ViewModels;
 using Bags_Wallets.Repository.Interface;
 using AutoMapper;
-using Bags_Wallets.Repository.Implementation;
-using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bags_Wallets.Controllers
@@ -15,7 +13,6 @@ namespace Bags_Wallets.Controllers
         private readonly ShopDbContext _DbContext;
         private readonly ISellerRepository _sellerRepository;
         private readonly IMapper _mapper;
-
 
         public SellerController(ShopDbContext dbContext, ISellerRepository sellerRepository, IMapper mapper)
         {

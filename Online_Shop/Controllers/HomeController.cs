@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bags_Wallets.Data;
@@ -6,8 +6,6 @@ using Bags_Wallets.Models;
 using Bags_Wallets.ViewModels;
 using Bags_Wallets.Repository.Interface;
 using AutoMapper;
-using System.Drawing.Printing;
-using Bags_Wallets.Repository.Implementation;
 
 namespace Bags_Wallets.Controllers
 {
@@ -29,25 +27,19 @@ namespace Bags_Wallets.Controllers
         {
             ViewBag.CoverPhoto = await _DbContext.PageImages.Where(x => x.PageImageCategory.Title == "MainCover").OrderBy(r => Guid.NewGuid()).ToListAsync();
             ViewBag.NewAdd = await _DbContext.Products.Include(x => x.Images).OrderByDescending(x => x.CreatedateTime).Take(20).ToListAsync();
-            ViewBag.Sale = await _DbContext.Products.Include(x => x.Images).Where(x=>x.IsOnSale == true).Take(20).OrderBy(r => Guid.NewGuid()).ToListAsync();
+            ViewBag.Sale = await _DbContext.Products.Include(x => x.Images).Where(x => x.IsOnSale == true).Take(20).OrderBy(r => Guid.NewGuid()).ToListAsync();
 
-            //var products = await _productRepository.GetAllProductsAsync();
-            //var viewModels = _mapper.Map<IEnumerable<ProductViewModel>>(products);
             return View();
 
         }
 
         public async Task<IActionResult> Bags(int page = 1)
         {
-            //if (!string.IsNullOrEmpty(type))
-            //{
-            //    ViewBag.TypeParam = "type=" + type;
-            //}
             ViewBag.ProductInfo = await _DbContext.Products.Where(x => x.Category.Title == "Bag").Where(x => x.Id == x.Id).FirstOrDefaultAsync();
             ViewBag.BagCoverPhoto = await _DbContext.PageImages.Where(x => x.PageImageCategory.Title == "BagCover").OrderBy(r => Guid.NewGuid()).ToListAsync();
             ViewBag.thumb = await _DbContext.Products.Include(x => x.Images).Where(x => x.Id == x.Id).FirstOrDefaultAsync();
 
-            const int pageSize = 10; // Set the number of products per page
+            const int pageSize = 10;
             var (products, totalCount) = await _productRepository.GetAllBagAsync(page, pageSize);
 
             var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
@@ -63,14 +55,13 @@ namespace Bags_Wallets.Controllers
 
             return View(viewModel);
 
-
         }
         public async Task<IActionResult> Wallets(int page = 1)
         {
             ViewBag.ProductInfo = await _DbContext.Products.Where(x => x.Category.Title == "Wallet").Where(x => x.Id == x.Id).FirstOrDefaultAsync();
             ViewBag.WalletCoverPhoto = await _DbContext.PageImages.Where(x => x.PageImageCategory.Title == "WalletCover").OrderBy(r => Guid.NewGuid()).ToListAsync();
 
-            const int pageSize = 10; // Set the number of products per page
+            const int pageSize = 10;
             var (products, totalCount) = await _productRepository.GetAllWalletAsync(page, pageSize);
 
             var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
@@ -86,11 +77,6 @@ namespace Bags_Wallets.Controllers
 
             return View(viewModel);
 
-
-            //var products = await _productRepository.GetAllWalletAsync();
-            //var viewModel = _mapper.Map<IEnumerable<ProductViewModel>>(products);
-
-            //return View(viewModel);
         }
         public async Task<IActionResult> FilterWallets(ProductListViewModel filter)
         {
@@ -136,7 +122,6 @@ namespace Bags_Wallets.Controllers
         {
             var products = await _productRepository.GetByIdAsync(id);
 
-
             if (!ModelState.IsValid)
             {
                 return View();
@@ -145,7 +130,6 @@ namespace Bags_Wallets.Controllers
             var viewModel = _mapper.Map<ProductViewModel>(products);
 
             return View(viewModel);
-
 
         }
         [HttpPost]
@@ -163,7 +147,6 @@ namespace Bags_Wallets.Controllers
             return View(viewModel);
 
         }
-
         public async Task<IActionResult> AboutUs()
         {
 

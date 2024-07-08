@@ -2,15 +2,12 @@
 using Bags_Wallets.Models;
 using Microsoft.AspNetCore.Identity;
 using Bags_Wallets.Data;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Bags_Wallets.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Bags_Wallets.Repository.Interface;
 using AutoMapper;
-using Bags_Wallets.Repository.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-
 
 namespace Bags_Wallets.Controllers
 {
@@ -21,10 +18,6 @@ namespace Bags_Wallets.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IShoppingCartItemRepository _shoppingCartrepository;
         private readonly IMapper _mapper;
-
-        //private readonly ShopDbContext DbContext;
-
-
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ShopDbContext DbContext,
             IShoppingCartItemRepository shoppingCartRepository, IMapper mapper, IUserRepository userRepository) : base(DbContext)
         {
@@ -33,7 +26,6 @@ namespace Bags_Wallets.Controllers
             _signInManager = signInManager;
             _shoppingCartrepository = shoppingCartRepository;
             _mapper = mapper;
-            //this.DbContext = dbContext;
 
         }
         private async Task<string> GetCurrentUserId()
@@ -44,7 +36,6 @@ namespace Bags_Wallets.Controllers
         public async Task<IActionResult> ShoppingCart()
         {
             var userId = await GetCurrentUserId();
-            //ViewBag.image = await _DbContext.Products.Include(x => x.Images).Where(x => x.Id == x.Id).FirstOrDefaultAsync();
             var cartItems = await _shoppingCartrepository.GetItemsByUserIdAsync(userId);
             var viewModel = _mapper.Map<ShoppingCartViewModel>(cartItems);
 
@@ -90,8 +81,6 @@ namespace Bags_Wallets.Controllers
 
             if (ModelState.IsValid)
             {
-
-
                 var result = await _signInManager.PasswordSignInAsync(vm.Email, vm.Password, vm.RememberMe, lockoutOnFailure: false);
 
                 if (result.Succeeded)
@@ -105,7 +94,6 @@ namespace Bags_Wallets.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(vm);
         }
 
@@ -126,7 +114,6 @@ namespace Bags_Wallets.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)

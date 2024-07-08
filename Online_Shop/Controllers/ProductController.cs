@@ -6,8 +6,6 @@ using Bags_Wallets.Repository.Interface;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
-
-
 namespace Bags_Wallets.Controllers
 {
     public class ProductController : Controller
@@ -46,12 +44,7 @@ namespace Bags_Wallets.Controllers
 
             ViewBag.Pages = viewModel;
 
-
             return View(productViewModels);
-
-            //var products = await _productRepository.GetAllAsync();
-            //var viewModel = _mapper.Map<IEnumerable<ProductViewModel>>(products);
-            //return View(viewModel);
 
         }
 
@@ -156,7 +149,6 @@ namespace Bags_Wallets.Controllers
                     }
                 }
 
-
                 await _productRepository.UpdateAsync(product);
                 return RedirectToAction(nameof(Product));
             }
@@ -188,7 +180,6 @@ namespace Bags_Wallets.Controllers
 
             await _productRepository.DeleteAsync(product.Id);
             return RedirectToAction(nameof(Product));
-
 
         }
         public async Task<IActionResult> SearchProduct(string query)
